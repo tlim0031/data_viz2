@@ -1,0 +1,59 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": { "url": "./data/monthly_arrivals_by_state_nationality_and_gender.csv" },
+    "width": "container",
+    "height": 280,
+    "params": [
+        {
+            "name": "Year_selected",
+            "value": 2022,
+            "bind": {
+                "input": "range",
+                "min": 2020, 
+                "max": 2024,
+                "step": 1,
+                "name": "Select Year: "
+            }
+        }
+    ],
+    "transform": [
+        {
+            "fold": ["arrivals_male", "arrivals_female"], "as": ["gender", "total_arrivals"]
+        },
+        {
+            "filter": "Year_selected == 0 || year(datum.date) == Year_selected"}
+    ],
+    "layer": [
+        {
+            "mark": "bar",
+            "encoding": {
+                "x": {"timeUnit": "month", "field": "date", "type": "ordinal", "title": "Month"},
+                "y": {"field": "total_arrivals", "aggregate": "sum", "type": "quantitative", "title": "Total Arrivals"},
+                "color": {"field": "gender", "type": "nominal",
+                    "scale": {
+                        "domain": ["arrivals_male", "arrivals_female"], "range": ["#a2d2ff", "#ffafcc"]
+                    },
+                    "title": "Gender"
+                },
+                "tooltip": [
+                    {"field": "date", "timeUnit": "year", "type": "nominal", "title": "Year"},
+                    {"field": "date", "timeUnit": "month", "type": "ordinal", "title": "Month"},
+                    {"field": "arrivals_male", "aggregate": "sum","type": "quantitative", "title": "Total Arrivals (Male)"},
+                    {"field": "arrivals_female", "aggregate": "sum","type": "quantitative", "title": "Total Arrivals (Female)"}]
+            }
+        },
+        {
+            "mark": {"type": "line", "interpolate": "monotone","point": true
+            },
+            "encoding": {
+                "x": {"field": "date", "timeUnit": "month","title": "Month"},
+                "y": {"field": "total_arrivals", "aggregate": "sum", "title": "Total Arrivals"},
+                "tooltip": [
+                    {"field": "date", "timeUnit": "year", "type": "nominal", "title": "Year"},
+                    {"field": "date", "timeUnit": "month", "type": "ordinal", "title": "Month"},
+                    {"field": "total_arrivals", "aggregate": "sum","type": "quantitative", "title": "Total Arrivals"}]
+            }
+        }
+    ]
+}
+  

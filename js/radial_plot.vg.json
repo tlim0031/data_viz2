@@ -1,0 +1,47 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A radial plot that encodes two values as the angle and radius of an arc, with a legend.",
+  "width": "container",
+  "height": 350,
+  "data": {
+    "url": "./data/inbound_tourism_expenditure_by_products.csv"
+  },
+  "transform": [
+    {
+      "aggregate": [
+        {
+          "op": "sum",
+          "field": "Value RM Million",
+          "as": "total_expenditure"
+        }
+      ],
+      "groupby": ["Products"]
+    }
+  ],
+  "params": [
+    {
+        "name": "product_highlight",
+        "select": { "type": "point", "fields": ["Products"], "on": "click", "empty": "none" }
+    },
+    {
+      "name": "legend_highlight",
+      "select" : { "type" :  "point" ,  "fields" : [ "Products" ]}, 
+      "bind" :  "legend" 
+  }     
+  ],
+  "layer": [
+    {
+      "mark": { "type": "arc", "innerRadius": 20, "stroke": "#fff", "tooltip": true },
+      "encoding": {
+        "theta": { "field": "total_expenditure", "type": "quantitative" },
+        "radius": { "field": "total_expenditure", "scale": { "type": "sqrt", "zero": true, "range": [0, 160]} },
+        "color": { "field": "Products", "type": "nominal", "scale": {"scheme": "accent"}},
+        "opacity": { "condition": { "param":  "legend_highlight", "value": 0.9 }, "value"  :  0.2},
+        "tooltip": [
+          { "field": "Products", "type": "nominal", "title": "Product" },
+          { "field": "total_expenditure", "type": "quantitative", "title": "Total Expenditure (RM Million)", "format": ",.2f" }
+        ]
+      }
+    }
+  ]
+}

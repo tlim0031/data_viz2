@@ -1,0 +1,35 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A radial plot that encodes two values as the angle and radius of an arc, with a legend.",
+    "width": "container",
+    "height": 350,
+    "data": {
+      "url": "./data/purpose_of_visit.csv"
+    },
+    "transform": [
+        {
+        "filter": "datum.Total != null" 
+        }
+    ],
+    "params": [
+        {
+            "name": "product_highlight",
+            "select": { "type": "point", "fields": ["Main Purpose of Visit"], "on": "click", "empty": "none" }
+        }
+    ],
+    "mark": {
+        "type": "arc", "tooltip": true
+    },
+    "encoding": {
+        "theta": { "field": "Total", "type": "quantitative" },
+        "color": { "field": "Main Purpose of Visit", "type": "nominal", "scale": {"scheme": "tableau20"} },
+        "opacity": { "condition": { "param":  "product_highlight", "value": 0.9 }, "value"  :  0.2},
+        "tooltip": [
+          { "field": "Main Purpose of Visit", "type": "nominal", "title": "Main Purpose of Visit" },
+          { "field": "Total", "type": "quantitative", "title": "Total Number of Visitors", "format": ",.2f" }
+        ]
+    }
+}
+    
+  
+  

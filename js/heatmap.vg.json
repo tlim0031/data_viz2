@@ -1,0 +1,23 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Heatmap of Search items across Quarters",
+    "width": 280,
+    "height": 280,
+    "data": {
+      "url": "./data/tourism_web_search.csv",
+      "format": {"type": "csv"}
+    },
+    "mark": "rect",
+    "encoding": {
+        "x": {"field": "QUARTER", "type": "ordinal"},
+        "y": {"field": "SEARCH ITEM", "type": "nominal"},
+        "color": {"field": "NUMBER OF SEARCH", "type": "quantitative",
+            "scale": {"range": ["#ffe5ec", "#ffc2d1", "#ffb3c6", "#ff8fab", "#fb6f92"]}
+        },
+        "tooltip": [
+            { "field": "QUARTER", "type": "ordinal", "title": "2022 Quarter" },
+            { "field": "SEARCH ITEM", "type": "nominal", "title": "Search Item" },
+            { "field": "NUMBER OF SEARCH", "type": "quantitative", "title": "Number of Searches" }
+        ]
+    }
+  }
