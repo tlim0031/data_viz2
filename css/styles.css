@@ -6,6 +6,7 @@ body {
     background-size: cover; /* Scale the background image to cover the entire element */
     background-position: center; /* Center the background image */
     background-repeat: no-repeat; /* Prevent the background from repeating */
+    backdrop-filter: blur(5px);
 }
 
 h1 {
@@ -13,13 +14,29 @@ h1 {
     color: #ffffff;
 }
 
-/* Page styles*/
-/* .page {
-  background: linear-gradient(135deg, #cfd8fd 30%, #9aa9fd 50%);
-} */
+p {
+  text-align: center;
+  line-height: 1.5;
+}
+
+.header-image {
+  width: 60px;  /* Set a width for the image */
+  height: auto;  /* Maintain image aspect ratio */
+  padding: 20px;
+}
 
 .header-container {
-  background-color: rgb(113, 170, 218);
+  display: flex;  /* Use flexbox to align the text and image */
+  align-items: center;  /*Vertically center-align the image and text*/
+  justify-content: center;
+}
+/* Page styles*/
+/* .page {
+  background: rgba(255, 255, 255, 0.5);
+} */
+
+.section-header-container {
+  background-color: rgb(24, 22, 92);
   border-radius: 10px;
   padding: 5px; /*inner spacing within card*/
   margin: 15px; /* outer spacing around card*/
@@ -27,6 +44,7 @@ h1 {
   text-align: center;
   flex: 1; /* Allow the card to grow */
 }
+
 /* Card Styles for entire card*/
 .card {
   background-color: rgba(255, 255, 255, 0.897);
@@ -49,6 +67,20 @@ h1 {
   flex: 1; /* Allow the card to grow */
 }
 
+.text-card {
+  background-color: rgba(174, 192, 241, 0.914);
+  border-radius: 10px;
+  padding: 5px; /*inner spacing within card*/
+  margin: 15px; /* outer spacing around card*/
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  flex: 1; /* Allow the card to grow */
+  display: flex; /* Use flexbox for centering */
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  color:#1d1f3b;
+}
 /* card container for entire card */
 .card-container {
   display: flex;

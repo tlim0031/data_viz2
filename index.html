@@ -30,7 +30,11 @@
         <!-- Page Header -->
         <div class="pure-g">
             <div class="pure-u-1-1">
-                <h1 style="font-size: 80px;">Tourism in Malaysia</h1>
+                <div class = "header-container">
+                    <img src="images/pointer_icon.png" alt="KLCC Image" class="header-image">
+
+                    <h1 style="font-size: 80px;">Tourism in Malaysia</h1>
+                </div>
             </div>
         </div>
 
@@ -39,7 +43,7 @@
             <div class="pure-u-1-1">
                 <div class="card-container">
                     <div class="card">
-                        <h2>How does Malaysia's tourism compared to other countries?</h2>
+                        <h2>Malaysia's Tourism Performance in Comparison with Other Countries</h2>
                         <div id="choropleth_map" class="vis-container"></div>
                     </div>
                 </div>
@@ -48,12 +52,21 @@
             <div class="card-container-2 pure-u-1-1">
                 <!-- Tourist Arrivals Gender Stacked Bar Chart -->
                 <div class="card-2">
-                    <h2>Gender proportion of tourist arrivals</h2>
+                    <h2>Tourist Arrivals Demographic</h2>
                     <div id="stacked_bar_chart" class="vis-container"></div>
                 </div>
                 <!-- Tourist State of Entry -->
-                <div class="card-2">
-                    <h2>Tourist State of Entry</h2>
+                <div class="text-card">
+                    <p>
+                        The chart provides a visual representation of the <br>
+                        monthly tourist arrivals segmented by gender. In <b>2022</b>, <br>
+                        there is a steady increase throughout the year <br>
+                        In <b>2021</b>, there is a spike in tourist arrivals in December <br>
+                        which indicates a post-covid recovery and tourist start<br>
+                        to travel. Overall, this visualization provides insights <br>
+                        into gender distribution among travelers
+                    </p>
+                    <!-- <h2>Tourist State of Entry</h2> -->
                     <!-- <div id="tree_map" class="vis-container"></div> -->
                 </div>
             </div>
@@ -62,29 +75,28 @@
         <!-- Pre-departure section -->
         <div class="pure-g">
             <div class="pure-u-1-1">
-                <div class="header-container">
-                    <h1 style="color: azure;">Pre-Departure</h1>
+                <div class="section-header-container">
+                    <h1 style="color: azure;">Pre-Departure Preparation</h1>
                 </div>
             </div>
 
             <div class="card-container-2 pure-u-1-1">
                 <div class="card-2">
-                    <h2>What do they search for?</h2>
+                    <h2>Top Searches by Tourists</h2>
                     <div id="heat_map" class="vis-container"></div>
                 </div>
                 <div class="card-2">
-                    <h2>Purpose of visit</h2>
-                    <div id="pie_chart" class="vis-container"></div>
+                    <h2>Purpose of Visit</h2>
+                    <div id="interactive_pie_chart" class="vis-container"></div>
                 </div>
             </div>
         </div>
 
-
         <!-- Tourist Behaviours section -->
         <div class="pure-g">
             <div class="pure-u-1-1">
-                <div class="header-container">
-                    <h1 style="color: azure;">Tourists' Behaviours</h1>
+                <div class="section-header-container">
+                    <h1 style="color: azure;">Tourist Behaviour</h1>
                 </div>
             </div>
 
@@ -92,7 +104,7 @@
             <div class="pure-u-1-1">
                 <div class="card-container">
                     <div class="card">
-                        <h2>Top Shopping Location for Tourists</h2>
+                        <h2>Top Shopping Location</h2>
                         <div id="word_cloud" class="vis-container"></div>
                     </div>
                 </div>
@@ -101,12 +113,23 @@
             <!-- Radial plot and grouped bar chart -->
             <div class="card-container-2 pure-u-1-1">
                 <div class="card-2">
-                    <h2>How Much Do They Spent?</h2>
+                    <h2>Tourist Spending Patterns</h2>
                     <div id="radial_plot" class="vis-container"></div>
                 </div>
-                <div class="card-2">
-                    <h2>Proportion of Local vs International Hotel Guest</h2>
-                    <div id="pie_chart" class="vis-container"></div>
+                <div class="text-card">
+                    <p>
+                        <b>Accommodation</b> and <b>tourism characteristic products</b><br>
+                        appear to be the top spending categories for tourists.<br>
+                        High proportion of expenses in tourism characteristic <br>
+                        products category highlighted significant importance of local <br>
+                        cultural experience. <b>Transport</b> and <b>food and beverage</b> expenses <br>
+                        are on par, indicating a balanced approach in travel <br>
+                        logistics and culinary enjoyment. Smaller share for <b>entertainment</b><br>
+                        and <b>travel agencies</b> suggest a shift towards self-service booking <br>
+                        as tourist prefer personalized trip itenerary <br>
+                    </p>
+                    <!-- <h2>Proportion of Local vs International Hotel Guest</h2> -->
+                    <!-- <div id="pie_chart" class="vis-container"></div> -->
                 </div>
             </div>
         </div>
@@ -119,6 +142,7 @@
         var pie_chart = "./js/pie_chart_visit_purpose.vg.json";
         var radial_plot = "./js/radial_plot.vg.json";
         var heat_map = "./js/heatmap.vg.json";
+        var interactive_pie_chart = "./js/interactive_pie_chart.vg.json";
 
         
         vegaEmbed('#choropleth_map', choropleth_map, {"actions": false}).then(function (result) {
@@ -131,6 +155,9 @@
         }).catch(console.error);
 
         vegaEmbed('#pie_chart', pie_chart, {"actions": false}).then(function (result) {
+        }).catch(console.error);
+
+        vegaEmbed('#interactive_pie_chart', interactive_pie_chart, {"actions": false}).then(function (result) {
         }).catch(console.error);
 
         vegaEmbed('#radial_plot', radial_plot, {"actions": false}).then(function (result) {

@@ -1,0 +1,63 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A radial plot that encodes two values as the angle and radius of an arc, with a legend.",
+    "width": "container",
+    "height": 350,
+    "data": {
+      "url": "./data/purpose_of_visit.csv"
+    },
+    "transform": [
+      {
+        "filter": "datum.Total != null"
+      },
+      {
+        "fold": [
+          "SINGAPORE", "THAILAND", "INDONESIA", "BRUNEI", "PHILIPPINES", "VIETNAM",
+          "CHINA", "JAPAN", "SOUTH KOREA", "TAIWAN", "INDIA", "PAKISTAN", "SAUDI ARABIA",
+          "UNITED ARAB EMIRATES", "OMAN", "KUWAIT", "IRAN", "CANADA", "UNITED STATES",
+          "UNITED KINGDOM", "IRELAND", "SWEDEN", "DENMARK", "FINLAND", "NORWAY", "ITALY",
+          "SPAIN", "FRANCE", "BELGIUM", "NETHERLAND", "GERMANY", "SWITZERLAND", "RUSSIA",
+          "AUSTRALIA", "NEW ZEALAND", "SOUTH AFRICA", "CENTRAL ASIA", "OTHER ASEAN", "OTHER EAST ASIA",
+          "OTHER SOUTH ASIA", "OTHER WEST ASIA", "OTHER AMERICAS", "OTHER EUROPE", "OTHERS"
+        ],
+        "as": ["Country", "Total"]
+      },
+      {
+        "filter": "selected_country == 'All' || datum.Country == selected_country"
+      }
+    ],
+    "params": [
+      {
+        "name": "product_highlight",
+        "select": { "type": "point", "fields": ["Main Purpose of Visit"], "on": "click", "empty": "none" }
+      },
+      {
+        "name": "selected_country",
+        "value": "All",
+        "bind": {
+          "input": "select",
+          "options": ["All", "SINGAPORE", "THAILAND", "INDONESIA", "BRUNEI", "PHILIPPINES", "VIETNAM",
+            "CHINA", "JAPAN", "SOUTH KOREA", "TAIWAN", "INDIA", "PAKISTAN", "SAUDI ARABIA",
+            "UNITED ARAB EMIRATES", "OMAN", "KUWAIT", "IRAN", "CANADA", "UNITED STATES",
+            "UNITED KINGDOM", "IRELAND", "SWEDEN", "DENMARK", "FINLAND", "NORWAY", "ITALY",
+            "SPAIN", "FRANCE", "BELGIUM", "NETHERLAND", "GERMANY", "SWITZERLAND", "RUSSIA",
+            "AUSTRALIA", "NEW ZEALAND", "SOUTH AFRICA", "CENTRAL ASIA", "OTHER ASEAN", "OTHER EAST ASIA",
+            "OTHER SOUTH ASIA", "OTHER WEST ASIA", "OTHER AMERICAS", "OTHER EUROPE", "OTHERS"],
+          "name": "Select Country: "
+        }
+      }
+    ],
+    "mark": {
+      "type": "arc", "innerRadius": 50, "tooltip": true
+    },
+    "encoding": {
+      "theta": { "field": "Total", "type": "quantitative" },
+      "color": { "field": "Main Purpose of Visit", "type": "nominal", "scale": {"scheme": "tableau20"} },
+      "opacity": { "condition": { "param": "product_highlight", "value": 0.9 }, "value": 0.2 },
+      "tooltip": [
+        { "field": "Main Purpose of Visit", "type": "nominal", "title": "Main Purpose of Visit" },
+        { "field": "Total", "type": "quantitative", "title": "Total Number of Visitors", "format": ",.2f" }
+      ]
+    }
+  }
+  
