@@ -56,7 +56,7 @@
       "opacity": { "condition": { "param": "product_highlight", "value": 0.9 }, "value": 0.2 },
       "tooltip": [
         { "field": "Main Purpose of Visit", "type": "nominal", "title": "Main Purpose of Visit" },
-        { "field": "Total", "type": "quantitative", "title": "Total Number of Visitors", "format": ",.2f" }
+        { "field": "Total", "type": "quantitative", "title": "Visitor Proportion (%)", "format": ",.2f" }
       ]
     }
   }
