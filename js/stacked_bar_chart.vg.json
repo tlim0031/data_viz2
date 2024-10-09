@@ -43,7 +43,7 @@
             }
         },
         {
-            "mark": {"type": "line", "interpolate": "monotone","point": true
+            "mark": {"type": "line", "interpolate": "monotone","point": true, "tooltip": true
             },
             "encoding": {
                 "x": {"field": "date", "timeUnit": "month","title": "Month"},
