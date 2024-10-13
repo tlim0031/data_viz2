@@ -1,78 +1,87 @@
-/* General Page Styles */
 body {
-    font-family: 'Open Sans', sans-serif;
-    /* background-color: #f5f5f5; Light background for the page */
-    background-image: url('../images/kl_view.jpg'); /* Specify the path to your image */
-    background-size: cover; /* Scale the background image to cover the entire element */
-    background-position: center; /* Center the background image */
-    background-repeat: no-repeat; /* Prevent the background from repeating */
-    /* backdrop-filter: blur(5px); */
+    /* background-color: rgb(242, 230, 212); */
+    background: linear-gradient(150deg, #ffebd4 0%, #b9bfffa1 100%);
+    flex: 1;
 }
 
 h1 {
     text-align: center;
-    color: #ffffff;
+    color: #20175f;
 }
 
 p {
-  text-align: center;
+  text-align: justify;
   line-height: 1.5;
-}
-
-.header-image {
-  width: 60px;  /* Set a width for the image */
-  height: auto;  /* Maintain image aspect ratio */
-  padding: 20px;
+  font-family: sans-serif;
 }
 
 .header-container {
   display: flex;  /* Use flexbox to align the text and image */
   align-items: center;  /*Vertically center-align the image and text*/
   justify-content: center;
+  font-family: serif;
+  height: 120px;
+  margin-top: 30px;
 }
-/* Page styles*/
-/* .page {
-  background: rgba(255, 255, 255, 0.5);
-} */
+
+.header-image {
+  width: 55px;  /* Set a width for the image */
+  height: auto;  /* Maintain image aspect ratio */
+  padding: 20px;
+}
 
 .section-header-container {
-  background-color: rgb(24, 22, 92);
+  background-color: #20175f;
+  color: rgb(242, 230, 212);
   border-radius: 10px;
-  padding: 5px; /*inner spacing within card*/
+  padding-top: 0; /*inner spacing within card*/
+  height: 70px;
   margin: 15px; /* outer spacing around card*/
-  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.404);
   flex: 1; /* Allow the card to grow */
+
+  /* alignment */
+  justify-content: center; /* for horizontal alignment */
+  display: flex;
+  align-items: center; /* for vertical alignment */
+
+  /* fonts setting */
+  font-family: serif;
+  font-size: 20px;
 }
 
 /* Card Styles for entire card*/
 .card {
-  background-color: rgba(255, 255, 255, 0.897);
+  /* background-color: rgba(255, 255, 255, 0.897); */
+  background-color: rgba(255, 255, 255, 0.89);
   border-radius: 10px;
-  padding: 5px; /*inner spacing within card*/
+  padding: 0px; /*inner spacing within card*/
   margin: 15px; /* outer spacing around card*/
-  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
   flex: 1; /* Allow the card to grow */
+  /* box-shadow: 0 10px 50px rgba(0, 0, 0, 0.404); */
+  text-align: center;
+  font-family: sans-serif;
 }
 
 /* Card Styles for side-by-side cards */
 .card-2 {
-  background-color: rgba(255, 255, 255, 0.897);
+  /* background-color: rgba(255, 255, 255, 0.897); */
+  background-color: rgba(255, 255, 255);
   border-radius: 10px;
-  padding: 5px; /*inner spacing within card*/
+  padding: 0px; /*inner spacing within card*/
   margin: 15px; /* outer spacing around card*/
-  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 20px 20px rgba(0, 0, 0, 0.404); */
   text-align: center;
   flex: 1; /* Allow the card to grow */
+  font-family: sans-serif;
 }
 
 .text-card {
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
   border-radius: 10px;
   padding: 5px; /*inner spacing within card*/
   margin: 15px; /* outer spacing around card*/
-  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 20px 20px rgba(0, 0, 0, 0.404); */
   text-align: center;
   flex: 1; /* Allow the card to grow */
   display: flex; /* Use flexbox for centering */
@@ -80,7 +89,10 @@ p {
   justify-content: center; /* Center vertically */
   align-items: center; /* Center horizontally */
   color:#1d1f3b;
+  font-family: sans-serif;
+  font-size: 16px;
 }
+
 /* card container for entire card */
 .card-container {
   display: flex;
@@ -91,7 +103,7 @@ p {
 /* card container for side-by-side card */
 .card-container-2 {
   display: flex; /* Use flexbox for side-by-side cards */
-  justify-content: space-between; /* Space out the cards */
+  justify-content: start; /*Space out the cards */
   align-items: stretch; /* stretch the cards to the same height */
 }
 
@@ -104,10 +116,20 @@ p {
 
 /* Grid layout adjustment */
 .pure-g {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
 }
 
 .pure-u-1-2 {
     width: 50%;
+}
+
+.authorship-container {
+  background-color: rgb(255, 255, 255);
+  color: rgb(105, 105, 105);
+  font-family: sans-serif;
+  padding: 5px;
+  margin-top: 50px;
+  font-size: 16px;
+  padding-left: 50px;
 }

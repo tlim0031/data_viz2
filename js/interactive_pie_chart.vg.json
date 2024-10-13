@@ -1,63 +1,80 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "A radial plot that encodes two values as the angle and radius of an arc, with a legend.",
-    "width": "container",
-    "height": 350,
-    "data": {
-      "url": "./data/purpose_of_visit.csv"
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 350,
+  "data": {
+    "url": "./data/purpose_of_visit.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.Total != null"
     },
-    "transform": [
-      {
-        "filter": "datum.Total != null"
-      },
-      {
-        "fold": [
-          "SINGAPORE", "THAILAND", "INDONESIA", "BRUNEI", "PHILIPPINES", "VIETNAM",
-          "CHINA", "JAPAN", "SOUTH KOREA", "TAIWAN", "INDIA", "PAKISTAN", "SAUDI ARABIA",
-          "UNITED ARAB EMIRATES", "OMAN", "KUWAIT", "IRAN", "CANADA", "UNITED STATES",
-          "UNITED KINGDOM", "IRELAND", "SWEDEN", "DENMARK", "FINLAND", "NORWAY", "ITALY",
-          "SPAIN", "FRANCE", "BELGIUM", "NETHERLAND", "GERMANY", "SWITZERLAND", "RUSSIA",
-          "AUSTRALIA", "NEW ZEALAND", "SOUTH AFRICA", "CENTRAL ASIA", "OTHER ASEAN", "OTHER EAST ASIA",
-          "OTHER SOUTH ASIA", "OTHER WEST ASIA", "OTHER AMERICAS", "OTHER EUROPE", "OTHERS"
-        ],
-        "as": ["Country", "Total"]
-      },
-      {
-        "filter": "selected_country == 'All' || datum.Country == selected_country"
-      }
-    ],
-    "params": [
-      {
-        "name": "product_highlight",
-        "select": { "type": "point", "fields": ["Main Purpose of Visit"], "on": "click", "empty": "none" }
-      },
-      {
-        "name": "selected_country",
-        "value": "All",
-        "bind": {
-          "input": "select",
-          "options": ["All", "SINGAPORE", "THAILAND", "INDONESIA", "BRUNEI", "PHILIPPINES", "VIETNAM",
-            "CHINA", "JAPAN", "SOUTH KOREA", "TAIWAN", "INDIA", "PAKISTAN", "SAUDI ARABIA",
-            "UNITED ARAB EMIRATES", "OMAN", "KUWAIT", "IRAN", "CANADA", "UNITED STATES",
-            "UNITED KINGDOM", "IRELAND", "SWEDEN", "DENMARK", "FINLAND", "NORWAY", "ITALY",
-            "SPAIN", "FRANCE", "BELGIUM", "NETHERLAND", "GERMANY", "SWITZERLAND", "RUSSIA",
-            "AUSTRALIA", "NEW ZEALAND", "SOUTH AFRICA", "CENTRAL ASIA", "OTHER ASEAN", "OTHER EAST ASIA",
-            "OTHER SOUTH ASIA", "OTHER WEST ASIA", "OTHER AMERICAS", "OTHER EUROPE", "OTHERS"],
-          "name": "Select Country: "
-        }
-      }
-    ],
-    "mark": {
-      "type": "arc", "innerRadius": 50, "tooltip": true
+    {
+      "fold": [
+        "Singapore", "Thailand", "Indonesia", "Brunei", "Philippines", "Vietnam",
+        "China", "Japan", "South Korea", "Taiwan", "India", "Pakistan", "Saudi Arabia",
+        "United Arab Emirates", "Oman", "Kuwait", "Iran", "Canada", "United States",
+        "United Kingdom", "Ireland", "Sweden", "Denmark", "Finland", "Norway", "Italy",
+        "Spain", "France", "Belgium", "Netherland", "Germany", "Switzerland", "Russia",
+        "Australia", "New Zealand", "South Africa", "Central Asia", "Other Asean", "Other East Asia",
+        "Other South Asia", "Other West Asia", "Other Americas", "Other Europe", "Others"
+      ],
+      "as": ["Country", "Total"]
     },
-    "encoding": {
-      "theta": { "field": "Total", "type": "quantitative" },
-      "color": { "field": "Main Purpose of Visit", "type": "nominal", "scale": {"scheme": "tableau20"} },
-      "opacity": { "condition": { "param": "product_highlight", "value": 0.9 }, "value": 0.2 },
-      "tooltip": [
-        { "field": "Main Purpose of Visit", "type": "nominal", "title": "Main Purpose of Visit" },
-        { "field": "Total", "type": "quantitative", "title": "Visitor Proportion (%)", "format": ",.2f" }
-      ]
+    {
+      "filter": "selected_country == 'All' || datum.Country == selected_country"
+    },
+    {
+      "aggregate": [
+        { "op": "sum", "field": "Total", "as": "TotalVisitors" }
+      ],
+      "groupby": ["Main Purpose of Visit"]
     }
+  ],
+  "params": [
+    {
+      "name": "product_highlight",
+      "select": { "type": "point", "fields": ["Main Purpose of Visit"], "on": "click", "empty": "none" }
+    },
+    {
+      "name": "selected_country",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": ["All", "Singapore", "Thailand", "Indonesia", "Brunei", "Philippines", "Vietnam",
+          "China", "Japan", "South Korea", "Taiwan", "India", "Pakistan", "Saudi Arabia",
+          "United Arab Emirates", "Oman", "Kuwait", "Iran", "Canada", "United States",
+          "United Kingdom", "Ireland", "Sweden", "Denmark", "Finland", "Norway", "Italy",
+          "Spain", "France", "Belgium", "Netherland", "Germany", "Switzerland", "Russia",
+          "Australia", "New Zealand", "South Africa", "Central Asia", "Other Asean", "Other East Asia",
+          "Other South Asia", "Other West Asia", "Other Americas", "Other Europe", "Others"],
+        "name": "Select Country: "
+      }
+    },
+    {
+      "name": "legend_highlight",
+      "select" : { "type" :  "point" ,  "fields" : ["Main Purpose of Visit"]}, 
+      "bind" :  "legend" 
+    }     
+  ],
+  "mark": {
+    "type": "arc", "innerRadius": 50, "tooltip": true
+  },
+  "encoding": {
+    "theta": { "field": "TotalVisitors", "type": "quantitative" },
+    "color": { "field": "Main Purpose of Visit", "type": "nominal",
+      "scale": {"range": [
+         "#ffffcc", "#fee090", "#feb24c", "#fdae6b", "#f16913", "#fd8d3c", 
+         "#8e0152", "#c51b7d", "#de77ae", "#f1b6da", "#fde0ef",
+          "#d7b5d8", "#7fbc41", "#4d9221", "#276419",
+          "#80cdc1", "#35978f"
+        ]
+      }
+    },
+    "opacity": { "condition": { "param": "legend_highlight", "value": 0.9 }, "value": 0.2 },
+    "tooltip": [
+      { "field": "Main Purpose of Visit", "type": "nominal", "title": "Main Purpose of Visit" },
+      { "field": "TotalVisitors", "type": "quantitative", "title": "Total Visitors (Thousands)", "format": ",.0f" }
+    ]
   }
-  
+}

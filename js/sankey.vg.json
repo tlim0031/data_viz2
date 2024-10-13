@@ -1,0 +1,265 @@
+{
+    "$schema": "https://vega.github.io/schema/vega/v5.json",
+    "height": 600,
+    "width": 800,
+    "padding": {"left": 150, "right": 100, "top": 20, "bottom": 20},
+    "data": [
+      {
+        "name": "rawData",
+        "url": "https://raw.githubusercontent.com/CarmenLiew/FIT3179/refs/heads/main/Assignment2/data/enrolment_school_district.csv",
+        "format": {"type": "csv", "parse": {"students": "number", "date": "date"}},
+        "transform": [
+          {"type": "filter", "expr": "datum.state !== 'Malaysia' && datum.district == 'All Districts' && datum.sex == 'both'"},
+          {
+            "type": "aggregate",
+            "groupby": ["state", "stage"],
+            "fields": ["students"],
+            "ops": ["sum"],
+            "as": ["size"]
+          }
+        ]
+      },
+      {
+        "name": "nodes",
+        "source": "rawData",
+        "transform": [
+          {"type": "formula", "expr": "datum.state + datum.stage", "as": "key"},
+          {"type": "fold", "fields": ["state", "stage"], "as": ["stack", "grpId"]},
+          {
+            "type": "stack",
+            "groupby": ["stack"],
+            "sort": {"field": "grpId", "order": "descending"},
+            "field": "size"
+          },
+          {"type": "formula", "expr": "(datum.y0 + datum.y1) / 2", "as": "yc"}
+        ]
+      },
+      {
+        "name": "sourceNodes",
+        "source": "nodes",
+        "transform": [{"type": "filter", "expr": "datum.stack == 'state'"}]
+      },
+      {
+        "name": "destinationNodes",
+        "source": "nodes",
+        "transform": [{"type": "filter", "expr": "datum.stack == 'stage'"}]
+      },
+      {
+        "name": "edges",
+        "source": "sourceNodes",
+        "transform": [
+          {
+            "type": "lookup",
+            "from": "destinationNodes",
+            "key": "key",
+            "fields": ["key"],
+            "as": ["target"]
+          },
+          {
+            "type": "linkpath",
+            "orient": "horizontal",
+            "shape": "diagonal",
+            "sourceY": {"expr": "scale('y', datum.yc)"},
+            "sourceX": {"expr": "scale('x', 'state') + bandwidth('x')"},
+            "targetY": {"expr": "scale('y', datum.target.yc)"},
+            "targetX": {"expr": "scale('x', 'stage')"}
+          },
+          {
+            "type": "formula",
+            "expr": "range('y')[0] - scale('y', datum.size)",
+            "as": "strokeWidth"
+          },
+          {
+            "type": "formula",
+            "expr": "datum.size / domain('y')[1]",
+            "as": "percentage"
+          }
+        ]
+      },
+      {
+        "name": "stateLabels",
+        "source": "sourceNodes",
+        "transform": [
+            {
+                "type": "aggregate",
+                "groupby": ["grpId"],
+                "fields": ["yc", "size", "y0", "y1"],
+                "ops": ["mean", "sum", "min", "max"],
+                "as": ["yc", "totalSize", "y0", "y1"]
+            },
+            {
+                "type": "formula",
+                "expr": "datum.grpId === 'W.P. Putrajaya' ? 100 : (datum.grpId === 'W.P. Labuan' ? 450000 : datum.yc)",
+                "as": "adjustedYc"
+            }
+        ]
+      },
+      {
+        "name": "stageLabels",
+        "source": "destinationNodes",
+        "transform": [
+          {
+            "type": "aggregate",
+            "groupby": ["grpId"],
+            "fields": ["yc", "size"],
+            "ops": ["mean", "sum"],
+            "as": ["yc", "totalSize"]
+          },
+          {
+            "type": "formula",
+            "expr": "datum.grpId === 'primary' ? 'Primary' : (datum.grpId === 'secondary' ? 'Secondary' : (datum.grpId === 'post_secondary' ? 'Post Secondary' : datum.grpId))",
+            "as": "stageLabel"
+          }
+        ]
+      }
+    ],
+    "scales": [
+      {
+        "name": "x",
+        "type": "band",
+        "range": "width",
+        "domain": ["state", "stage"],
+        "paddingOuter": 0.05,
+        "paddingInner": 0.95
+      },
+      {
+        "name": "y",
+        "type": "linear",
+        "range": "height",
+        "domain": {"data": "nodes", "field": "y1"},
+        "nice": true
+      },
+      {
+        "name": "color",
+        "type": "ordinal",
+        "domain": [
+        "Johor",
+        "Kedah",
+        "Kelantan",
+        "Melaka",
+        "Negeri Sembilan",
+        "Pahang",
+        "Perak",
+        "Perlis",
+        "Pulau Pinang",
+        "Sabah",
+        "Sarawak",
+        "Selangor",
+        "Terengganu",
+        "W.P. Kuala Lumpur",
+        "W.P. Labuan",
+        "W.P. Putrajaya"
+      ],
+      "range": [
+          "#8dd3c7",
+          "#b15928",
+          "#e0b01f",
+          "#ff7f00",
+          "#cab2d6",
+          "#ffed6f",
+          "#666666", 
+          "#e7cb94",
+          "#1f78b4", 
+          "#fccde5", 
+          "#fb8072",
+          "#80b1d3",
+          "#fdbf6f", 
+          "#bc80bd",
+          "#6a3d9a", 
+          "#e377c2"
+      ]
+    }
+      
+    ],
+    "axes": [
+      {
+        "orient": "left",
+        "scale": "y",
+        "title": "Cumulative Number of Students",
+        "titlePadding": 20,
+        "labelPadding": 50,
+        "offset": 90,
+        "tickCount": 6,
+        "labelAngle": 0,
+        "labelAlign": "left",
+        "labelBaseline": "middle",
+        "labelFontSize": 9
+      }
+    ],
+    "marks": [
+      {
+        "type": "path",
+        "from": {"data": "edges"},
+        "encode": {
+          "update": {
+            "stroke": {"scale": "color", "field": "state"},
+            "strokeWidth": {"field": "strokeWidth"},
+            "path": {"field": "path"},
+            "strokeOpacity": {"value": 0.3},
+            "tooltip": {
+              "signal": "datum.state + ' → ' + datum.target.grpId + '    ' + format(datum.size, ',.0f') + ' students   (' + format(datum.percentage, '.1%') + ')'"
+            }
+          },
+          "hover": {"strokeOpacity": {"value": 0.7}}
+        }
+      },
+      {
+        "type": "rect",
+        "from": {"data": "nodes"},
+        "encode": {
+          "enter": {
+            "fill": {"scale": "color", "field": "grpId"},
+            "width": {"scale": "x", "band": 1}
+          },
+          "update": {
+            "x": {"scale": "x", "field": "stack"},
+            "y": {"field": "y0", "scale": "y"},
+            "y2": {"field": "y1", "scale": "y"},
+            "fillOpacity": {"value": 0.6},
+            "tooltip": {
+              "signal": "datum.grpId + '   ' + format(datum.size, ',.0f') + ' students'"
+            }
+          },
+          "hover": {"fillOpacity": {"value": 1}}
+        }
+      },
+      {
+        "type": "text",
+        "from": {"data": "stateLabels"},
+        "encode": {
+          "update": {
+            "x": {"scale": "x", "value": "state", "offset": -8},
+            "y": {"field": "adjustedYc", "scale": "y"},
+            "align": {"value": "right"},
+            "baseline": {"value": "middle"},
+            "text": {"field": "grpId"},
+            "fontSize": {"value": 9},
+            "fontWeight": {"value": "bold"},
+            "fill": {"value": "black"},
+            "tooltip": {
+              "signal": "datum.grpId + '   ' + format(datum.totalSize, ',.0f') + ' students'"
+            }
+          }
+        }
+      },
+      {
+        "type": "text",
+        "from": {"data": "stageLabels"},
+        "encode": {
+          "update": {
+            "x": {"scale": "x", "value": "stage", "offset": 8},
+            "y": {"field": "yc", "scale": "y"},
+            "align": {"value": "left"},
+            "baseline": {"value": "middle"},
+            "text": {"field": "stageLabel"},
+            "fontSize": {"value": 9},
+            "fontWeight": {"value": "bold"},
+            "fill": {"value": "black"},
+            "tooltip": {
+              "signal": "datum.stageLabel + '   ' + format(datum.totalSize, ',.0f') + ' students'"
+            }
+          }
+        }
+      }
+    ]
+  }
