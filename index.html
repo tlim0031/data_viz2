@@ -162,7 +162,7 @@
                 <div class="card-container">
                     <div class="card">
                         <h2>Top Shopping Location</h2>
-                        <div id="word_cloud" class="vis-container"></div>
+                        <div id="bubble_chart" class="vis-container"></div>
                     </div>
                 </div>
             </div>
@@ -216,11 +216,12 @@
     <script type="text/javascript">
         var choropleth_map = "./js/world_tourism_ranking_map.vg.json";
         var stacked_bar_chart = "./js/stacked_bar_chart.vg.json";
-        var word_cloud = "./js/word_cloud.vg.json";
+        // var word_cloud = "./js/word_cloud.vg.json";
         var pie_chart = "./js/pie_chart_visit_purpose.vg.json";
         var radial_plot = "./js/radial_plot.vg.json";
         var heat_map = "./js/heatmap.vg.json";
         var interactive_pie_chart = "./js/interactive_pie_chart.vg.json";
+        var bubble_chart = "./js/bubble_chart.vg.json";
 
         
         vegaEmbed('#choropleth_map', choropleth_map, {"actions": true}).then(function (result) {
@@ -229,8 +230,8 @@
         vegaEmbed('#stacked_bar_chart', stacked_bar_chart, {"actions": true}).then(function (result) {
         }).catch(console.error);
 
-        vegaEmbed('#word_cloud', word_cloud, {"actions": true}).then(function (result) {
-        }).catch(console.error);
+        // vegaEmbed('#word_cloud', word_cloud, {"actions": true}).then(function (result) {
+        // }).catch(console.error);
 
         vegaEmbed('#interactive_pie_chart', interactive_pie_chart, {"actions": true}).then(function (result) {
         }).catch(console.error);
@@ -238,19 +239,12 @@
         vegaEmbed('#radial_plot', radial_plot, {"actions": true}).then(function (result) {
         }).catch(console.error);
 
-        // vegaEmbed('#box_plot', box_plot, {"actions": false}).then(function (result) {
-        // }).catch(console.error);
-
-        // vegaEmbed('#bump_chart', bump_chart, {"actions": false}).then(function (result) {
-        // }).catch(console.error);
+        vegaEmbed('#bubble_chart', bubble_chart, {"actions": true}).then(function (result) {
+        }).catch(console.error);
 
         vegaEmbed('#heat_map', heat_map, {"actions": true}).then(function (result) {
         }).catch(console.error);
 
-        // vegaEmbed('#packed_bubble_chart', packed_bubble_chart, { 
-        //     "actions": false,
-        // }).then(function (result) {
-        // }).catch(console.error);
     </script>
     
 </body>

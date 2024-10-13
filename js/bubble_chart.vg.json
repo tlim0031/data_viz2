@@ -1,0 +1,61 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bump chart showing country rankings for each shopping location.",
+  "data": { "url": "./data/top_shopping_location.csv" },
+  "width": "container",
+  "transform": [
+    {
+      "fold": [
+        "Singapore", "Thailand", "Indonesia", "Brunei", "Philippines", "Vietnam", 
+        "China", "Japan", "South Korea", "Taiwan", "India", "Pakistan", "Saudi Arabia", 
+        "United Arab Emirates", "Oman", "Kuwait", "Iran", "Canada", "United States",
+        "United Kingdom", "Ireland", "Sweden", "Denmark", "Finland", "Norway", "Italy",
+        "Spain", "France", "Belgium", "Netherlands", "Germany", "Switzerland", "Russia",
+        "Australia", "New Zealand", "South Africa", "Central Asia", "Other Asean",
+        "Other East Asia", "Other South Asia", "Other West Asia", "Other Americas",
+        "Other Europe", "Others"
+      ],
+      "as": ["Country", "Total"]
+    }
+  ],
+  "mark": {
+    "type": "circle",
+    "opacity": 0.8
+  },
+  "encoding": {
+    "x": {
+      "field": "Country", 
+      "type": "nominal",
+      "axis": {"title": "Country", "grid": false}
+    },
+    "y": {
+      "field": "Shopping Location", 
+      "type": "nominal",
+      "axis": { "title": "Shopping Location", "labelPadding": 20 }
+    },
+    "size": {
+      "field": "Total",
+      "type": "quantitative",
+      "scale": {"rangeMax": 1500},
+      "legend": {"title": "Total Tourists (Thousands)"}
+    },
+    "color": {
+      "field": "Shopping Location", 
+      "type": "nominal", 
+      "legend": null,
+      "scale": {"range": [
+        "#1F77B4", "#FF7F0E", "#2CA02C", "#9467BD", 
+        "#8C564B", "#E377C2", "#7F7F7F", "#BCBD22", 
+        "#17BECF", "#1F78B4", "#33A02C", "#A6CEE3", 
+        "#B2DF8A", "#FB9A99", "#FDBF6F", "#CAB2D6", 
+        "#6A3D9A", "#FFFF99", "#B15928", "#F0E442", 
+        "#56B4E9", "#009E73", "#D55E00", "#FF1493"
+      ]}
+    },
+    "tooltip": [
+      {"field": "Country", "type": "nominal", "title": "Country"},
+      {"field": "Shopping Location", "type": "nominal", "title": "Shopping Location"},
+      {"field": "Total", "type": "quantitative", "title": "Total Tourists (Thousands)"}
+    ]
+  }
+}

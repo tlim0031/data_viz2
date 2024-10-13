@@ -3,7 +3,7 @@
   "width": "container",
   "height": 350,
   "data": {
-    "url": "./data/purpose_of_visit.csv"
+    "url": "https://raw.githubusercontent.com/tlim0031/data_viz2/refs/heads/main/data/purpose_of_visit.csv"
   },
   "transform": [
     {
