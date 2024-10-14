@@ -1,8 +1,21 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Bump chart showing country rankings for each shopping location.",
-  "data": { "url": "./data/top_shopping_location.csv" },
+  "data": { "url": "https://raw.githubusercontent.com/tlim0031/data_viz2/refs/heads/main/data/top_shopping_location.csv" },
   "width": "container",
+  "params": [
+    {
+      "name": "country_limit",
+      "value": 44,
+      "bind": {
+        "input": "range",
+        "min": 1,
+        "max": 44,
+        "step": 1,
+        "name": "Number of Countries: "
+      }
+    }
+  ],
   "transform": [
     {
       "fold": [
@@ -16,46 +29,131 @@
         "Other Europe", "Others"
       ],
       "as": ["Country", "Total"]
+    },
+    {
+      "sort": [{"field": "Country", "order": "ascending"}],
+      "window": [
+        {
+          "op": "rank",
+          "as": "rank"
+        }
+      ]
+    },
+    {
+      "filter": "datum.rank <= (country_limit * 24)"
     }
   ],
-  "mark": {
-    "type": "circle",
-    "opacity": 0.8
-  },
-  "encoding": {
-    "x": {
-      "field": "Country", 
-      "type": "nominal",
-      "axis": {"title": "Country", "grid": false}
+  "layer": [
+    {
+      "mark": { "type": "circle", "opacity": 0.8 },
+      "encoding": {
+        "x": {
+          "field": "Country", 
+          "type": "nominal",
+          "axis": {"title": "Country", "grid": false}
+        },
+        "y": {
+          "field": "Shopping Location", 
+          "type": "nominal",
+          "axis": { "title": "Shopping Location"}
+        },
+        "size": {
+          "field": "Total",
+          "type": "quantitative",
+          "scale": {"rangeMax": 1500},
+          "legend": {"title": "Total Tourists (Thousands)"}
+        },
+        "color": {
+          "field": "Shopping Location", 
+          "type": "nominal", 
+          "legend": null,
+          "scale": {"range": [
+            "#1F77B4", "#FF7F0E", "#2CA02C", "#9467BD", 
+            "#8C564B", "#E377C2", "#7F7F7F", "#BCBD22", 
+            "#17BECF", "#1F78B4", "#33A02C", "#A6CEE3", 
+            "#B2DF8A", "#FB9A99", "#FDBF6F", "#CAB2D6", 
+            "#6A3D9A", "#FFFF99", "#B15928", "#F0E442", 
+            "#56B4E9", "#009E73", "#D55E00", "#FF1493"
+          ]}
+        },
+        "tooltip": [
+          {"field": "Country", "type": "nominal", "title": "Country"},
+          {"field": "Shopping Location", "type": "nominal", "title": "Shopping Location"},
+          {"field": "Total", "type": "quantitative", "title": "Total Tourists (Thousands)"}
+        ]
+      }
     },
-    "y": {
-      "field": "Shopping Location", 
-      "type": "nominal",
-      "axis": { "title": "Shopping Location", "labelPadding": 20 }
+    {
+      "transform": [
+        {
+          "filter": "datum.Country === 'Finland' && datum['Shopping Location'] === 'Kuching'"
+        }
+      ],
+      "mark": {
+        "type": "text", 
+        "align": "right", 
+        "baseline": "middle", 
+        "dx": 580,
+        "dy": 40,
+        "fontSize": 10, 
+        "fontStyle": "italic",
+        "color": "#FDBF6F"
+      },
+      "encoding": {
+        "text": {
+          "value": ["Kuching is less likely to", "attract international tourists",
+           "to visit as they are less", "marketed internationally"]
+        }
+      }
     },
-    "size": {
-      "field": "Total",
-      "type": "quantitative",
-      "scale": {"rangeMax": 1500},
-      "legend": {"title": "Total Tourists (Thousands)"}
+    {
+      "transform": [
+        {
+          "filter": "datum.Country === 'Other Asean' && datum['Shopping Location'] === 'Bukit Bintang KLCC'"
+        }
+      ],
+      "mark": {
+        "type": "text", 
+        "align": "right", 
+        "baseline": "middle", 
+        "dx": 450,
+        "dy": -280,
+        "fontSize": 10, 
+        "fontStyle": "italic",
+        "color": "#1F77B4"
+      },
+      "encoding": {
+        "text": {
+          "value": ["Bukit Bintang KLCC offers a", "wide variety of luxury stores",
+           "and restaurants for tourists to shop"]
+        }
+      }
     },
-    "color": {
-      "field": "Shopping Location", 
-      "type": "nominal", 
-      "legend": null,
-      "scale": {"range": [
-        "#1F77B4", "#FF7F0E", "#2CA02C", "#9467BD", 
-        "#8C564B", "#E377C2", "#7F7F7F", "#BCBD22", 
-        "#17BECF", "#1F78B4", "#33A02C", "#A6CEE3", 
-        "#B2DF8A", "#FB9A99", "#FDBF6F", "#CAB2D6", 
-        "#6A3D9A", "#FFFF99", "#B15928", "#F0E442", 
-        "#56B4E9", "#009E73", "#D55E00", "#FF1493"
-      ]}
-    },
-    "tooltip": [
-      {"field": "Country", "type": "nominal", "title": "Country"},
-      {"field": "Shopping Location", "type": "nominal", "title": "Shopping Location"},
-      {"field": "Total", "type": "quantitative", "title": "Total Tourists (Thousands)"}
-    ]
-  }
+    {
+      "transform": [
+        {
+          "filter": "datum.Country === 'Vietnam' && datum['Shopping Location'] === 'Petaling Street'"
+        }
+      ],
+      "mark": {
+        "type": "text", 
+        "align": "right", 
+        "baseline": "middle", 
+        "dx": 600,
+        "dy": 200,
+        "fontSize": 10, 
+        "fontStyle": "italic",
+        "color": "#D55E00"
+      },
+      "encoding": {
+        "text": {
+          "value": ["Petaling Street is a cultural",
+          "landmark offering souvenirs and",
+          "handicrafts for tourists to", 
+          " explore, making it a must-visit",
+          "tourist destination"]
+        }
+      }
+    }
+  ]
 }

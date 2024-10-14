@@ -27,187 +27,195 @@
 </head>
 
 <body>
-    <!-- <div class="page" > -->
 
-        <!-- Page Header -->
-        <div class="pure-g">
-            <div class="pure-u-1-1">
-                <div class = "header-container">
-                    <img src="images/pointer_icon.png" alt="KLCC Image" class="header-image">
-                    <h1 style="font-size: 80px;">Tourism in Malaysia</h1>
+    <!-- Page Header -->
+    <div class="pure-g">
+        <div class="pure-u-1-1">
+            <div class = "header-container">
+                <img src="images/pointer_icon.png" alt="KLCC Image" class="header-image">
+                <h1 style="font-size: 80px;">Tourism in Malaysia</h1>
+            </div>
+
+            <div class="text-card">
+                <p style="text-align: center;">
+                    This dashboard provides a comprehensive view of Malaysia's tourism landscape. <br>
+                    It features demographic insights into tourist arrivals, purpose of their <br>
+                    visits, popular shopping locations among tourists and also understanding <br>
+                    tourist's expenditure patterns. These data helps the stakeholders such as <br>
+                    travel agencies and hospitality provider to refine on marketing strategies. <br>
+                    Tourism board can also help create better travel experiences for <br>
+                    international tourist and enhance the tourism sector.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tourist Arrivals Breakdown Section -->
+    <div class="pure-g">
+        <div class="pure-u-1-1">
+            <div class="card-container">
+                <div class="card">
+                    <h2>Overview of International Tourist Arrivals at Different States of Malaysia</h2>
+                    <div id="malaysia_map" class="vis-container"></div>
                 </div>
+            </div>
+        </div>
 
+        <div class="card-container-2 pure-u-1-1">
+            <div class="text-card">
+                <p>
+                    The <b>sudden decline</b> of international arrivals in <b>April 2020</b> <br>
+                    has shown the impact of Covid-19 pandemic on Malaysia's <br>
+                    tourism industry. Major lockdowns and travel bans explains <br>
+                    why the number of arrivals approaches zero since April 2020. <br>
+                    In <b>2021</b>, the spike in tourist arrivals in December demonstrates <br>
+                    a post-covid recovery and tourist start to travel. In <b>2022</b>, <br>
+                    there is a steady increase in international arrivals throughout <br>
+                    the year. In <b>2023 and 2024</b>, the tourism industry starts to stabilize, <br>
+                    as shown by the even distribution of monthly tourist arrivals. <br>
+                    The balanced gender proporition in tourist arrivals also shows that <br>
+                    both male and female are equally engaged in traveling. <br>
+                </p>
+            </div>
+
+            <!-- Tourist Arrivals Gender Stacked Bar Chart -->
+            <div class="card-2">
+                <h2>Tourist Arrivals Demographic</h2>
+                <i style="font-size: 12px; text-align: center; color: rgb(141, 141, 141); margin-top: 10px;">
+                    * Adjust slider to view tourist arrivals for different years. <br>
+                </i>
+                <div id="stacked_bar_chart" class="vis-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pre-departure section -->
+    <div class="pure-g">
+        <div class="pure-u-1-1">
+            <div class="section-header-container">
+                <h1 style="color: rgb(255, 255, 255);">Pre-Departure Preparation</h1>
+            </div>
+        </div> 
+
+        <div class="card-container-2 pure-u-1-1">
+            <div class="card-2">
+                <h2>Top Searches by Tourists</h2>
+                <p style="font-size: 10px; text-align: center;">
+                    Q1: January to March, Q2: April to June, <br>
+                    Q3: July to September, Q4: October to December
+                </p>
+
+                <!-- Heatmap -->
+                <div id="heat_map" class="vis-container"></div>
                 <div class="text-card">
-                    <p style="text-align: center;">
-                        This dashboard provides a comprehensive view of Malaysia's tourism landscape. <br>
-                        It features demographic insights into tourist arrivals, purpose of their <br>
-                        visits, popular shopping locations among tourists and also understanding <br>
-                        tourist's expenditure patterns. These data helps the stakeholders such as <br>
-                        travel agencies and hospitality provider to refine on marketing strategies. <br>
-                        Tourism board can also help create better travel experiences for <br>
-                        international tourist and enhance the tourism sector.
+                    <p style="font-size: 15px">
+                        The number of searches for <b>"Published Packages"</b> is consistently <br>
+                        <b>high</b> across all four quarters. In contrast, <b>"Agents"</b> has the <br>
+                        <b>least</b> number of searches among the four categories, indicating <br>
+                        tourist's preference on self-planned trip rather than relying on <br>
+                        travel agents to handle their trip arrangements. Tourists also <br>
+                        seemed to be particularly interested in <b>"Published Deals"</b> but <br>
+                        the frequency of searches <b>fluctuates more</b> across quarters <br>
+                        compared to "Published Packages". It appears that the tourist's <br>
+                        search interest on various travel deals is driven by specific <br>
+                        travel periods, such as during peak travel seasons in quarter <br>
+                        3 and quarter 4. Additionally, search patterns for <b>"Merchant"</b> <br>
+                        appear to be quite <b>uniform</b>, highlighting its significant role <br>
+                        in travel planning.
                     </p>
                 </div>
             </div>
-        </div>
 
-        <!-- Tourist Arrivals Breakdown Section -->
-        <div class="pure-g">
-            <div class="pure-u-1-1">
-                <div class="card-container">
-                    <div class="card">
-                        <h2>Malaysia's Tourism Performance in Comparison with Other Countries</h2>
-                        <div id="choropleth_map" class="vis-container"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-container-2 pure-u-1-1">
+            <div class="card-2">
+                <h2>Purpose of Visit</h2>
+                <i style="font-size: 12px; text-align: center; color: rgb(141, 141, 141); margin-top: 10px;">
+                    * Click on the legend to filter the categories. <br>
+                    and click on white space to remove filter. <br>
+                </i>
+                <div id="interactive_pie_chart" class="vis-container"></div>
                 <div class="text-card">
-                    <p>
-                        The <b>sudden decline</b> of international arrivals in <b>April 2020</b> <br>
-                        has shown the impact of Covid-19 pandemic on Malaysia's <br>
-                        tourism industry. Major lockdowns and travel bans explains <br>
-                        why the number of arrivals approaches zero since April 2020. <br>
-                        In <b>2021</b>, the spike in tourist arrivals in December demonstrates <br>
-                        a post-covid recovery and tourist start to travel. In <b>2022</b>, <br>
-                        there is a steady increase in international arrivals throughout <br>
-                        the year. In <b>2023 and 2024</b>, the tourism industry starts to stabilize, <br>
-                        as shown by the even distribution of monthly tourist arrivals. <br>
-                        The balanced gender proporition in tourist arrivals also shows that <br>
-                        both male and female are equally engaged in traveling. <br>
+                    <p style="font-size: 15px">
+                        <b>"Holiday"</b> appears to be the <b>most prominent reason</b> for visit, <br>
+                        indicating that majority of people travel for leisure rather than <br>
+                        for business, education or other purposes.  Furthermore, a lot of <br>
+                        international students choose to pursue <b>education</b> in Malaysia for <br>
+                        <b>better educational opportunities, affordable tuition fees and <br>
+                        unique courses</b>. The diverse and multicultural environment also <br>
+                        make Malaysia a preferred choice for exchange programs because <br>
+                        students get to immerse themselves in the local culture. <br>
+                        In contrast, <b>business</b> travel appears to be <b>lesser</b> mainly due <br>
+                        to the global shift towards hybrid working mode where most<br>
+                        as most companies will conduct their business operation online, <br>
+                        which reduces the need for frequent business travel.
                     </p>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <!-- Tourist Arrivals Gender Stacked Bar Chart -->
-                <div class="card-2">
-                    <h2>Tourist Arrivals Demographic</h2>
-                    <div id="stacked_bar_chart" class="vis-container"></div>
+    <!-- Tourist Behaviours section -->
+    <div class="pure-g">
+        <div class="pure-u-1-1">
+            <div class="section-header-container">
+                <h1 style="color: azure;">Tourist Behaviour</h1>
+            </div>
+        </div>
+
+        <!-- Bubble Chart -->
+        <div class="pure-u-1-1">
+            <div class="card-container">
+                <div class="card">
+                    <h2>Top Shopping Location</h2>
+                    <div id="bubble_chart" class="vis-container"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Pre-departure section -->
-        <div class="pure-g">
-            <div class="pure-u-1-1">
-                <div class="section-header-container">
-                    <h1 style="color: rgb(255, 255, 255);">Pre-Departure Preparation</h1>
-                </div>
-            </div> 
-
-            <div class="card-container-2 pure-u-1-1">
-                <div class="card-2">
-                    <h2>Top Searches by Tourists</h2>
-                    <p style="font-size: 10px; text-align: center;">
-                        Q1: January to March, Q2: April to June, <br>
-                        Q3: July to September, Q4: October to December
-                    </p>
-                    <div id="heat_map" class="vis-container"></div>
-                    <div class="text-card">
-                        <p style="font-size: 15px">
-                            The number of searches for <b>"Published Packages"</b> is consistently <br>
-                            <b>high</b> across all four quarters. In contrast, <b>"Agents"</b> has the <br>
-                            <b>least</b> number of searches among the four categories, indicating <br>
-                            tourist's preference on self-planned trip rather than relying on <br>
-                            travel agents to handle their trip arrangements. Tourists also <br>
-                            seemed to be particularly interested in <b>"Published Deals"</b> but <br>
-                            the frequency of searches <b>fluctuates more</b> across quarters <br>
-                            compared to "Published Packages". It appears that the tourist's <br>
-                            search interest on various travel deals is driven by specific <br>
-                            travel periods, such as during peak travel seasons in quarter <br>
-                            3 and quarter 4. Additionally, search patterns for <b>"Merchant"</b> <br>
-                            appear to be quite <b>uniform</b>, highlighting its significant role <br>
-                            in travel planning.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="card-2">
-                    <h2>Purpose of Visit</h2>
-                    <i style="font-size: 12px; text-align: center; color: rgb(141, 141, 141); margin-top: 10px;">
-                        * Click on the legend to filter the categories. <br>
-                        and click on white space to remove filter. <br>
-                    </i>
-                    <div id="interactive_pie_chart" class="vis-container"></div>
-                    <div class="text-card">
-                        <p style="font-size: 16px">
-                            <b>"Holiday"</b> appears to be the <b>most prominent reason</b> for visit, <br>
-                            indicating that majority of people travel for leisure rather than <br>
-                            for business, education or other purposes.  Furthermore, a lot of <br>
-                            international students choose to pursue <b>education</b> in Malaysia for <br>
-                            <b>better educational opportunities, affordable tuition fees and <br>
-                            unique courses</b>. The diverse and multicultural environment also <br>
-                            make Malaysia a preferred choice for exchange programs because <br>
-                            students get to immerse themselves in the local culture. <br>
-                            In contrast, <b>business</b> travel appears to be <b>lesser</b> mainly due <br>
-                            to the global shift towards hybrid working mode where most<br>
-                            as most companies will conduct their business operation online, <br>
-                            which reduces the need for frequent business travel.
-                        </p>
-                    </div>
-                </div>
+        <!-- Radial plot -->
+        <div class="card-container-2 pure-u-1-1">
+            <div class="card-2">
+                <h2>Tourist Spending Patterns</h2>
+                <div id="radial_plot" class="vis-container"></div>
+                <i style="font-size: 12px; text-align: center; color: rgb(141, 141, 141); margin-top: 10px;">
+                    * Click on the legend to filter the categories. <br>
+                    and click on white space to remove filter. <br>
+                </i>
+            </div>
+            <div class="text-card">
+                <p>
+                    <b>Accommodation</b> and <b>tourism characteristic products</b> appear to be <br>
+                    the top spending categories for tourists. High proportion of expenses <br>
+                    in tourism characteristic products category highlighted significant <br>
+                    importance of local cultural experience. <b>Transport</b> and <b>food and </b><br>
+                    <b> beverage</b> expenses are on par, indicating a balance in travel <br>
+                    logistics and culinary enjoyment. Both entertainment and travel <br>
+                    agencies occupies a relatively low proportion among the expenses <br>
+                    suggest that tourist prefer planning their own itinerary rather <br>
+                    than standardized packaged offered by travel agencies. Hence, they<br>
+                    would conduct more research to plan their trips efficiently. <br>
+                </p>
             </div>
         </div>
+    </div>
 
-        <!-- Tourist Behaviours section -->
-        <div class="pure-g">
-            <div class="pure-u-1-1">
-                <div class="section-header-container">
-                    <h1 style="color: azure;">Tourist Behaviour</h1>
-                </div>
-            </div>
-
-            <!-- Word Cloud -->
-            <div class="pure-u-1-1">
-                <div class="card-container">
-                    <div class="card">
-                        <h2>Top Shopping Location</h2>
-                        <div id="bubble_chart" class="vis-container"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Radial plot and grouped bar chart -->
-            <div class="card-container-2 pure-u-1-1">
-                <div class="card-2">
-                    <h2>Tourist Spending Patterns</h2>
-                    <div id="radial_plot" class="vis-container"></div>
-                    <i style="font-size: 12px; text-align: center; color: rgb(141, 141, 141); margin-top: 10px;">
-                        * Click on the legend to filter the categories. <br>
-                        and click on white space to remove filter. <br>
-                    </i>
-                </div>
-                <div class="text-card">
-                    <p>
-                        <b>Accommodation</b> and <b>tourism characteristic products</b> appear to be <br>
-                        the top spending categories for tourists. High proportion of expenses <br>
-                        in tourism characteristic products category highlighted significant <br>
-                        importance of local cultural experience. <b>Transport</b> and <b>food and </b><br>
-                        <b> beverage</b> expenses are on par, indicating a balance in travel <br>
-                        logistics and culinary enjoyment. Both entertainment and travel <br>
-                        agencies occupies a relatively low proportion among the expenses <br>
-                        suggest that tourist prefer planning their own itinerary rather <br>
-                        than standardized packaged offered by travel agencies. Hence, they<br>
-                        would conduct more research to plan their trips efficiently. <br>
-                    </p>
-                    <!-- <h2>Proportion of Local vs International Hotel Guest</h2> -->
-                    <!-- <div id="pie_chart" class="vis-container"></div> -->
-                </div>
-            </div>
-        </div>
-
-
+        <!-- Metadata -->
         <div class="authorship-container">
-            <p>
-                This visualization is created by Lim Tong En (32905165). <br>
-                Last updated: 13th October 2024 <br>
-                Data sources: <br>
+            <p style="font-size: 12px; line-height: 2;">
+                Visualization Author: Lim Tong En (32905165) <br>
+                Created on: 29th September 2024 <br>
+                Last updated on: 14th October 2024 <br>
+                The following data sources are obtained from Malaysia's official open data portal (data.gov.my):<br>              
                 <ol style="font-size: 12px; line-height: 2;">
-                    <li>Monthly arrivals by state, nationality and gender: <a href="https://data.gov.my/data-catalogue/arrivals_soe"> https://data.gov.my/data-catalogue/arrivals_soe</a></li>
-                    <li>Tourism web search: <a href="https://archive.data.gov.my/data/dataset/statistik-laman-web-tourism-malaysia-deals-packages"> https://archive.data.gov.my/data/dataset/statistik-laman-web-tourism-malaysia-deals-packages</a></li>
-                    <li>Purpose of visit: <a href="https://archive.data.gov.my/data/dataset/main-purpose-of-visit "> https://archive.data.gov.my/data/dataset/main-purpose-of-visit </a></li>
-                    <li>Top shopping location: <a href="https://archive.data.gov.my/data/dataset/top-shopping-location-in-malaysia"> https://archive.data.gov.my/data/dataset/top-shopping-location-in-malaysia</a></li>
-                    <li>Expenditure by products: <a href="https://archive.data.gov.my/data/en_US/dataset/inbound-tourism-expenditure-of-tourist-by-products"> https://archive.data.gov.my/data/en_US/dataset/inbound-tourism-expenditure-of-tourist-by-products </a></li>
+                    <li><a href="https://data.gov.my/data-catalogue/arrivals_soe"> Monthly arrivals by state, nationality and gender </a>
+                        by Immigration Department of Malaysia (Updated on 24 September 2023) </li>
+                    <li><a href="https://archive.data.gov.my/data/dataset/statistik-laman-web-tourism-malaysia-deals-packages"> Tourism web search </a>
+                        by Azhani Binti. Md. Ramli (Updated on 21 August 2023) </li>
+                    <li><a href="https://archive.data.gov.my/data/dataset/main-purpose-of-visit"> Purpose of visit </a>
+                        by Azhani Binti. Md. Ramli (Updated on 30 September 2021) </li>
+                    <li><a href="https://archive.data.gov.my/data/dataset/top-shopping-location-in-malaysia"> Top shopping location </a>
+                        by Azhani Binti. Md. Ramli (Updated on 7 October 2021) </li>
+                    <li><a href="https://archive.data.gov.my/data/en_US/dataset/inbound-tourism-expenditure-of-tourist-by-products"> Expenditure by products </a>
+                        by Department Of Statistic Malaysia (Updated on 2 November 2022)</li>
                 </ol>
             </p>
         </div>
@@ -215,34 +223,31 @@
     <!-- script to embed the charts -->
     <script type="text/javascript">
         var choropleth_map = "./js/world_tourism_ranking_map.vg.json";
+        var malaysia_map = "./js/malaysia_map.vg.json";
         var stacked_bar_chart = "./js/stacked_bar_chart.vg.json";
-        // var word_cloud = "./js/word_cloud.vg.json";
-        var pie_chart = "./js/pie_chart_visit_purpose.vg.json";
-        var radial_plot = "./js/radial_plot.vg.json";
         var heat_map = "./js/heatmap.vg.json";
         var interactive_pie_chart = "./js/interactive_pie_chart.vg.json";
         var bubble_chart = "./js/bubble_chart.vg.json";
+        var radial_plot = "./js/radial_plot.vg.json";
 
         
         vegaEmbed('#choropleth_map', choropleth_map, {"actions": true}).then(function (result) {
         }).catch(console.error);
-    
+        vegaEmbed('#malaysia_map', malaysia_map, {"actions": true}).then(function (result) {
+        }).catch(console.error);
         vegaEmbed('#stacked_bar_chart', stacked_bar_chart, {"actions": true}).then(function (result) {
         }).catch(console.error);
 
-        // vegaEmbed('#word_cloud', word_cloud, {"actions": true}).then(function (result) {
-        // }).catch(console.error);
-
-        vegaEmbed('#interactive_pie_chart', interactive_pie_chart, {"actions": true}).then(function (result) {
+        vegaEmbed('#heat_map', heat_map, {"actions": true}).then(function (result) {
         }).catch(console.error);
 
-        vegaEmbed('#radial_plot', radial_plot, {"actions": true}).then(function (result) {
+        vegaEmbed('#interactive_pie_chart', interactive_pie_chart, {"actions": true}).then(function (result) {
         }).catch(console.error);
 
         vegaEmbed('#bubble_chart', bubble_chart, {"actions": true}).then(function (result) {
         }).catch(console.error);
 
-        vegaEmbed('#heat_map', heat_map, {"actions": true}).then(function (result) {
+        vegaEmbed('#radial_plot', radial_plot, {"actions": true}).then(function (result) {
         }).catch(console.error);
 
     </script>

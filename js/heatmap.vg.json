@@ -4,7 +4,7 @@
     "width": 330,
     "height": 330,
     "data": {
-      "url": "./data/tourism_web_search.csv",
+      "url": "https://raw.githubusercontent.com/tlim0031/data_viz2/refs/heads/main/data/tourism_web_search.csv",
       "format": {"type": "csv"}
     },
     "mark": "rect",

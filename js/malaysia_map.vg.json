@@ -1,0 +1,71 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 500,
+  "projection": {"type": "mercator"},
+  "params": [
+    {
+      "name": "selected_year",
+      "bind": {
+        "input": "select",
+        "options": [null, "2020", "2021", "2022", "2023"],
+        "labels": ["All", "2020", "2021", "2022", "2023"],
+        "name": "Select Year: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "./js/malaysia_map.json",
+        "format": {"type": "topojson", "feature": "ne_50m_ocean"}
+      },
+      "mark": {"type": "geoshape", "fill": "#5264cc", "stroke": "lightblue"}
+    },
+    {
+      "data": {
+        "url": "./js/malaysia_map.json",
+        "format": {"type": "topojson", "feature": "ne_50m_admin_0_countries"}
+      },
+      "transform": [
+        {"calculate": "'Country: ' + datum.properties.NAME", "as": "note"}
+      ],
+      "mark": {"type": "geoshape", "fill": "#e7e7e7", "stroke": "gray", "strokeWidth": 1},
+      "encoding": {"tooltip": {"field": "note"}}
+    },
+    {
+      "data": {
+        "url": "./js/ne_10m.topojson",
+        "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
+      },
+      "transform": [
+        {"filter": "selected_year == null || datum.year == selected_year"},
+        {
+          "lookup": "properties.name",
+          "from": {
+            "data": {"url": "./data/monthly_arrivals_with_lat_long.csv"},
+            "key": "state",
+            "fields": ["arrivals"]
+          }, "as": "arrivals"
+        },
+        {
+          "calculate": "datum.arrivals !== null ? datum.arrivals : 0", 
+          "as": "safe_arrivals" 
+        }
+      ],
+      "mark": {"type": "geoshape", "stroke": "white"},
+      "encoding": {
+        "color": {
+          "field": "arrivals",
+          "type": "quantitative",
+          "title": "Total International Tourist Arrival",
+          "scale": {"scheme": "blues"}
+        },
+        "tooltip": [
+          {"field": "properties.name", "type": "nominal", "title": "State"},
+          {"field": "arrivals", "type": "quantitative", "title": "Total International Tourist Arrivals", "format": ".2f"}
+        ]
+      }
+    }
+  ]
+}
