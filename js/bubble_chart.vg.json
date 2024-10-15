@@ -73,7 +73,7 @@
             "#17BECF", "#1F78B4", "#33A02C", "#A6CEE3", 
             "#B2DF8A", "#FB9A99", "#FDBF6F", "#CAB2D6", 
             "#6A3D9A", "#FFFF99", "#B15928", "#F0E442", 
-            "#56B4E9", "#009E73", "#D55E00", "#FF1493"
+            "#56B4E9", "#009E73", "#D55E00", "#c51b7d"
           ]}
         },
         "tooltip": [
@@ -124,8 +124,9 @@
       },
       "encoding": {
         "text": {
-          "value": ["Bukit Bintang KLCC offers a", "wide variety of luxury stores",
-           "and restaurants for tourists to shop"]
+          "value": ["Bukit Bintang KLCC is the most popular",
+            "shopping location as it offers a wide variety of",
+           "luxury stores and restaurants for tourists to shop"]
         }
       }
     },

@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 500,
+  "height": 600,
   "projection": {"type": "mercator"},
   "data": {
     "url": "https://raw.githubusercontent.com/tlim0031/data_viz2/refs/heads/main/js/ne_10m.topojson",
@@ -13,7 +13,7 @@
         "url": "https://raw.githubusercontent.com/tlim0031/data_viz2/refs/heads/main/js/malaysia_map.json",
         "format": {"type": "topojson", "feature": "ne_50m_ocean"}
       },
-      "mark": {"type": "geoshape", "fill": "#479bd7", "stroke": "lightblue"}
+      "mark": {"type": "geoshape", "fill": "#76c6ff", "stroke": "lightblue"}
     },
     {
       "data": {
@@ -39,7 +39,7 @@
           "lookup": "properties.name",
           "from": {
             "data": {
-              "url": "./data/aggregated_arrivals_population.csv"
+              "url": "https://raw.githubusercontent.com/tlim0031/data_viz2/refs/heads/main/data/aggregated_arrivals_population.csv"
             },
             "key": "state",
             "fields": ["year", "total_arrivals", "total_population"]
@@ -58,11 +58,17 @@
         "color": {
           "field": "arrivals_per_population",
           "type": "quantitative",
-          "title": "Total International per Population",
+          "title": "Total International Arrivals per Population",
           "scale": {
             "type": "threshold",
             "domain": [500, 1000, 2000, 6000, 8000],
-            "range": ["#fdd0a2", "#fdae6b", "#fd8d3c", "#e6550d", "#a63603"]
+            "rangeMin": 0,
+            "rangeMax": 15000,
+            "range": 
+            ["#bfd3e6","#9ebcda", "#8c96c6", "#8c6bb1","#6a51a3", "#4a1486"]
+          },
+          "legend": {
+            "title": "Arrivals per Population"
           }
         },
         "tooltip": [
@@ -70,10 +76,23 @@
           {"field": "properties.name", "type": "nominal", "title": "State"},
           {"field": "total_arrivals", "type": "quantitative", "title": "Total Arrivals"},
           {"field": "total_population", "type": "quantitative", "title": "Total Population"},
-          {"field": "arrivals_per_population", "type": "quantitative", "title": "Immigrants per Population (%)"}
+          {"field": "arrivals_per_population", "type": "quantitative",
+            "title": "Total International Arrivals per Population", "format": ".2f"}
         ]
       }
+    },
+    {
+      "mark": {
+        "type": "text", "align": "center", "baseline": "middle", 
+        "dx": -140, "dy": 150, "fontSize": 18, 
+        "fontStyle": "sans-serif", "color": "#4d4a60"
+      },
+      "encoding": {
+        "text": {
+          "value": ["Johor has the highest international tourist", "arrivals per population, followed by Selangor",
+           "and Sarawak. Pahang has the least", "international tourist arrivals"] 
+        }
+      }
     }
-    
   ]
 }

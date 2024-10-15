@@ -55,7 +55,7 @@
         <div class="pure-u-1-1">
             <div class="card-container">
                 <div class="card">
-                    <h2>Overview of International Tourist Arrivals at Different States of Malaysia</h2>
+                    <h2>Overview of International Tourist Arrivals at Different States of Malaysia in 2023</h2>
                     <div id="malaysia_map" class="vis-container"></div>
                 </div>
             </div>
@@ -132,7 +132,7 @@
                     * Click on the legend to filter the categories. <br>
                     and click on white space to remove filter. <br>
                 </i>
-                <div id="interactive_pie_chart" class="vis-container"></div>
+                <div id="interactive_donut_chart" class="vis-container"></div>
                 <div class="text-card">
                     <p style="font-size: 15px">
                         <b>"Holiday"</b> appears to be the <b>most prominent reason</b> for visit, <br>
@@ -226,7 +226,7 @@
         var malaysia_map = "./js/malaysia_map.vg.json";
         var stacked_bar_chart = "./js/stacked_bar_chart.vg.json";
         var heat_map = "./js/heatmap.vg.json";
-        var interactive_pie_chart = "./js/interactive_pie_chart.vg.json";
+        var interactive_donut_chart = "./js/interactive_donut_chart.vg.json";
         var bubble_chart = "./js/bubble_chart.vg.json";
         var radial_plot = "./js/radial_plot.vg.json";
 
@@ -243,7 +243,7 @@
         vegaEmbed('#heat_map', heat_map, {"actions": true}).then(function (result) {
         }).catch(console.error);
 
-        vegaEmbed('#interactive_pie_chart', interactive_pie_chart, {"actions": true}).then(function (result) {
+        vegaEmbed('#interactive_donut_chart', interactive_donut_chart, {"actions": true}).then(function (result) {
         }).catch(console.error);
 
         vegaEmbed('#bubble_chart', bubble_chart, {"actions": true}).then(function (result) {
