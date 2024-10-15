@@ -68,16 +68,16 @@
             ["#bfd3e6","#9ebcda", "#8c96c6", "#8c6bb1","#6a51a3", "#4a1486"]
           },
           "legend": {
-            "title": "Arrivals per Population"
+            "title": "Arrivals per state population"
           }
         },
         "tooltip": [
           {"field": "year", "type": "nominal", "title": "Year"},
           {"field": "properties.name", "type": "nominal", "title": "State"},
-          {"field": "total_arrivals", "type": "quantitative", "title": "Total Arrivals"},
-          {"field": "total_population", "type": "quantitative", "title": "Total Population"},
+          {"field": "total_arrivals", "type": "quantitative", "title": "Total International Tourist Arrivals", "format": ",.0f"},
+          {"field": "total_population", "type": "quantitative", "title": "State Population", "format": ",.0f"},
           {"field": "arrivals_per_population", "type": "quantitative",
-            "title": "Total International Arrivals per Population", "format": ".2f"}
+            "title": "Total International Arrivals per state population", "format": ",.2f"}
         ]
       }
     },

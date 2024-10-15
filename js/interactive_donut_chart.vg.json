@@ -74,7 +74,7 @@
     "opacity": { "condition": { "param": "legend_highlight", "value": 0.9 }, "value": 0.2 },
     "tooltip": [
       { "field": "Main Purpose of Visit", "type": "nominal", "title": "Main Purpose of Visit" },
-      { "field": "TotalVisitors", "type": "quantitative", "title": "Total Visitors (in thousands)", "format": ",.0f" }
+      { "field": "TotalVisitors", "type": "quantitative", "title": "Total Tourists (in thousands)", "format": ",.0f" }
     ]
   }
 }
