@@ -22,7 +22,7 @@
     <!-- Custom CSS file -->
     <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
 
-    <script src="vega_lite_vis.js"></script>
+    <!-- <script src="vega_lite_vis.js"></script> -->
 
 </head>
 
@@ -222,7 +222,7 @@
 
     <!-- script to embed the charts -->
     <script type="text/javascript">
-        var choropleth_map = "./js/world_tourism_ranking_map.vg.json";
+        // var choropleth_map = "./js/world_tourism_ranking_map.vg.json";
         var malaysia_map = "./js/malaysia_map.vg.json";
         var stacked_bar_chart = "./js/stacked_bar_chart.vg.json";
         var heat_map = "./js/heatmap.vg.json";
@@ -231,10 +231,12 @@
         var radial_plot = "./js/radial_plot.vg.json";
 
         
-        vegaEmbed('#choropleth_map', choropleth_map, {"actions": true}).then(function (result) {
-        }).catch(console.error);
+        // vegaEmbed('#choropleth_map', choropleth_map, {"actions": true}).then(function (result) {
+        // }).catch(console.error);
+
         vegaEmbed('#malaysia_map', malaysia_map, {"actions": true}).then(function (result) {
         }).catch(console.error);
+
         vegaEmbed('#stacked_bar_chart', stacked_bar_chart, {"actions": true}).then(function (result) {
         }).catch(console.error);
 
